@@ -1,13 +1,24 @@
 import React from "react";
+import "./css/style.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Rodape from "./Rodape";
 
-const Home = () => {
+export default function Home() {
   return (
-    <section>
-      <h1>Bem-vindo à Página Inicial</h1>
-      <p>Este é o conteúdo da página inicial do site.</p>
-    </section>
-  );
-};
+    <div className="home">
+      <div className="home-capa">
+        <h1>Bem-vindo à ASMP Transportes e Turismo</h1>
+        <p>Transporte e turismo com segurança, conforto e profissionalismo.</p>
 
-export default Home;
+        <div className="home-imagens">
+          <div className="img-placeholder">Arrasta aqui as tuas imagens</div>
+          <div className="img-placeholder">Arrasta aqui as tuas imagens</div>
+          <div className="img-placeholder">Arrasta aqui as tuas imagens</div>
+        </div>
+      </div>
+      <Rodape />
+    </div>
+  );
+}
+
 
