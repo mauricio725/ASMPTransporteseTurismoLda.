@@ -1,28 +1,38 @@
-import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import Rodape from "./Rodape";
 
 export default function Contactos() {
   const form = useRef();
   const [popup, setPopup] = useState(false);
+  const [telefone, setTelefone] = useState("+351");
 
   function enviarEmail(e) {
     e.preventDefault();
 
-    emailjs.sendForm(
-      "service_5jdo0qw",      // SERVICE ID
-      "template_ksm8w1m",     // TEMPLATE ID
-      form.current,
-      "2hlZqC2RII7bCCavz"     // PUBLIC KEY
-    )
-    .then(() => {
-      setPopup(true);        // abre o popup
-      form.current.reset();  // limpa o formulário
-    })
-    .catch((error) => {
-      console.error("Erro ao enviar:", error);
-      alert("Ocorreu um erro ao enviar a mensagem.");
-    });
+    emailjs
+      .send(
+        "service_5jdo0qw",       // SERVICE ID
+        "template_ksm8w1m",      // TEMPLATE ID
+        {
+          nome: form.current.nome.value,
+          email: form.current.email.value,
+          telefone: telefone,
+          mensagem: form.current.mensagem.value,
+        },
+        "2hlZqC2RII7bCCavz"      // PUBLIC KEY
+      )
+      .then(() => {
+        setPopup(true);
+        form.current.reset();
+        setTelefone("");
+      })
+      .catch((err) => {
+        console.error("Erro ao enviar:", err);
+        alert("Ocorreu um erro ao enviar a mensagem.");
+      });
   }
 
   return (
@@ -55,12 +65,30 @@ export default function Contactos() {
             <form ref={form} onSubmit={enviarEmail}>
               <input type="text" name="nome" placeholder="Nome" required />
               <input type="email" name="email" placeholder="Email" required />
-              <textarea name="mensagem" placeholder="Mensagem" rows="5" required></textarea>
+
+              {/* TELEFONE PRO */}
+              <PhoneInput
+                country={"pt"}
+                value={telefone}
+                onChange={setTelefone}
+                enableSearch={true}
+                countryCodeEditable={false}
+                inputProps={{
+                  name: "telefone",
+                  required: true,
+                }}
+              />
+
+              <textarea
+                name="mensagem"
+                placeholder="Mensagem"
+                rows="5"
+                required
+              ></textarea>
 
               <button type="submit">Enviar</button>
             </form>
           </div>
-
         </div>
 
         {/* MAPA */}
@@ -82,7 +110,6 @@ export default function Contactos() {
             </div>
           </div>
         )}
-
       </section>
 
       <Rodape />
