@@ -4,8 +4,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Rodape from "./Rodape";
 import taxi from "./img/imagemtaxi.jpg";
 
-export default function Home() {
-  // Slider de imagens
+export default function Home({ setCurrentPage }) {
+  // Slider
   const imagens = [taxi];
   const [index, setIndex] = useState(0);
 
@@ -17,7 +17,7 @@ export default function Home() {
     setIndex((prev) => (prev === imagens.length - 1 ? 0 : prev + 1));
   };
 
-  // Caixa de perguntas
+  // Perguntas automáticas
   const perguntas = [
     "O que deseja saber?",
     "Precisa de transporte?",
@@ -51,7 +51,9 @@ export default function Home() {
             <div><i className="fa-solid fa-home"></i><p>Alojamento</p></div>
           </div>
 
-          <button className="btn-reserva">Reservar Transporte</button>
+          <button className="btn-reserva" onClick={() => setCurrentPage("reservas")}>
+            Reservar Transporte
+          </button>
         </div>
 
         <div className="caixa-slider">
@@ -74,9 +76,9 @@ export default function Home() {
         </div>
 
         <div className="botoes-pergunta">
-          <button onClick={() => window.location.href = "#servicos"}>Serviços</button>
-          <button onClick={() => window.location.href = "#sobre"}>Sobre Nós</button>
-          <button onClick={() => window.location.href = "#contactos"}>Contactos</button>
+          <button onClick={() => setCurrentPage("servicos")}>Serviços</button>
+          <button onClick={() => setCurrentPage("sobre")}>Sobre Nós</button>
+          <button onClick={() => setCurrentPage("contactos")}>Contactos</button>
         </div>
       </div>
 

@@ -12,15 +12,23 @@ function App() {
   const [currentPage, setCurrentPage] = useState("home");
   const [showLoader, setShowLoader] = useState(true);
 
+  // Loader inicial (quando abre o site)
   useEffect(() => {
     const timer = setTimeout(() => setShowLoader(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
+  // Loader sempre que muda de página
+  useEffect(() => {
+    setShowLoader(true);
+    const timer = setTimeout(() => setShowLoader(false), 1200);
+    return () => clearTimeout(timer);
+  }, [currentPage]);
+
   const renderPage = () => {
     switch (currentPage) {
       case "home":
-        return <Home />;
+        return <Home setCurrentPage={setCurrentPage} />;
       case "servicos":
         return <Servicos />;
       case "reservas":
@@ -30,7 +38,7 @@ function App() {
       case "sobre":
         return <SobreNos setCurrentPage={setCurrentPage} />;
       default:
-        return <Home />;
+        return <Home setCurrentPage={setCurrentPage} />;
     }
   };
 
