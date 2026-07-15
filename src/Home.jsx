@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./css/style.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Rodape from "./Rodape";
-import taxi from "./img/imagemtaxi.jpg";
+
+// Importação das imagens do slider
+import imagem1 from "./img/imagem3.jpg";
+import imagem2 from "./img/imagemtaxi.png";
+import imagem3 from "./img/img352.png";
 
 export default function Home({ setCurrentPage }) {
+
   // Slider
-  const imagens = [taxi];
+  const imagens = [imagem1, imagem2, imagem3];
   const [index, setIndex] = useState(0);
 
   const anterior = () => {
@@ -39,10 +44,10 @@ export default function Home({ setCurrentPage }) {
     <div className="home">
       <section className="capa">
         <div className="capa-texto">
-          <h1>Bem-vindo à ASMP Transportes e Turismo</h1>
-          <p>Transporte e turismo com segurança, conforto e profissionalismo.</p>
+          <h1>Bem-vindo ao site</h1>
+          <p>A S M P Transportes e Turismo, Lda.</p>
           <p className="frase-impacto">
-            A ASMP leva-o onde precisa — com segurança, conforto e estilo.
+            Conte connosco para chegar ao seu destino.
           </p>
 
           <div className="icones-servicos">
@@ -86,3 +91,4 @@ export default function Home({ setCurrentPage }) {
     </div>
   );
 }
+
