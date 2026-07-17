@@ -5,6 +5,7 @@ import Servicos from "./Servicos.jsx";
 import Contactos from "./Contactos";
 import SobreNos from "./SobreNos.jsx";
 import Loader from "./Loader";
+import { Analytics } from "@vercel/analytics/react";
 import "./css/style.css";
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
     }
   };
 
-  return (
+ return (
     <div>
       {showLoader ? (
         <Loader />
@@ -49,6 +50,7 @@ function App() {
           <main>{renderPage()}</main>
         </>
       )}
+      <Analytics /> 
     </div>
   );
 }
