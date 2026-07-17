@@ -6,6 +6,8 @@ import Contactos from "./Contactos";
 import SobreNos from "./SobreNos.jsx";
 import Loader from "./Loader";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import "./css/style.css";
 
 function App() {
@@ -50,7 +52,8 @@ function App() {
           <main>{renderPage()}</main>
         </>
       )}
-      <Analytics /> 
+      <Analytics />
+      <SpeedInsights /> 
     </div>
   );
 }
