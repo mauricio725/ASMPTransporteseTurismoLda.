@@ -53,7 +53,7 @@ export default function Home({ setCurrentPage }) {
           <div className="icones-servicos">
             <div><i className="fa-solid fa-car"></i><p>Transporte</p></div>
             <div><i className="fa-solid fa-suitcase"></i><p>Turismo</p></div>
-            <div><i className="fa-solid fa-home"></i><p>Alojamentos</p></div>
+            <div><i className="fa-solid fa-home"></i><p>Alojamento</p></div>
           </div>
 
           <button className="btn-reserva" onClick={() => setCurrentPage("reservas")}>
